@@ -9,7 +9,7 @@ import { FbUserService } from './services/fb-user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent  {
   title = 'app';
   authSubscription: Subscription;
 
@@ -23,9 +23,5 @@ export class AppComponent implements OnDestroy {
         }
       } 
     );
-  }
-
-  ngOnDestroy() {
-    this.authSubscription.unsubscribe();
   }
 }

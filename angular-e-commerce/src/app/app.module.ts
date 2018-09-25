@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+// import { DataTableModule } from 'angular-datatables';
 
 import { AppComponent } from './app.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -23,6 +24,10 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { FbUserService } from './services/fb-user.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { AddProductComponent } from './admin/add-product/add-product.component';
+import { CategoryService } from './services/category.service';
+import { FormsModule } from '@angular/forms';
+import { ProductService } from './services/product.service';
 
 
 @NgModule({
@@ -38,7 +43,8 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
     ManageProductsComponent,
     ManageOrdersComponent,
     LoginComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -52,19 +58,24 @@ import { AdminAuthGuard } from './services/admin-auth-guard.service';
       {path: 'order-success', component: OrderSuccessComponent, canActivate:[AuthGuard]},
       {path: 'orders', component: OrderComponent, canActivate:[AuthGuard]},
 
+      {path: 'admin/products/add', component: AddProductComponent, canActivate:[AuthGuard, AdminAuthGuard]},
       {path: 'admin/products', component: ManageProductsComponent, canActivate:[AuthGuard, AdminAuthGuard]},
       {path: 'admin/orders', component: ManageOrdersComponent, canActivate:[AuthGuard, AdminAuthGuard]}
     ]),
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule
+    // DataTableModule
   ],
   providers: [
     AuthService,
     AuthGuard,
     AdminAuthGuard,
-    FbUserService
+    FbUserService,
+    CategoryService,
+    ProductService
   ],
   bootstrap: [AppComponent]
 })
