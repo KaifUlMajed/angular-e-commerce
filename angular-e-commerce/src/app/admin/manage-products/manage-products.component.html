@@ -1,1 +1,16 @@
 <a [routerLink]="['add']">New</a>
+
+<table>
+    <thead>
+        <tr>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Actions</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngIf="let p of products | async">
+
+        </tr>
+    </tbody>
+</table>

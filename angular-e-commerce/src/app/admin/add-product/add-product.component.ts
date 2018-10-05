@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../services/category.service';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -10,7 +11,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class AddProductComponent implements OnInit {
   categories: Observable<any>;
-  constructor(private catService: CategoryService, private prodService: ProductService) { }
+  constructor(private catService: CategoryService, private prodService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.categories = this.catService.getCategories();
@@ -18,6 +19,7 @@ export class AddProductComponent implements OnInit {
 
   save(product) {
     this.prodService.create(product);
+    this.router.navigate(['/admin/products']);
   }
 
 }

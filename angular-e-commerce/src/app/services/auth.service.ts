@@ -15,7 +15,6 @@ export class AuthService {
   constructor(private afAuth: AngularFireAuth, private route: ActivatedRoute, private fbService: FbUserService) { }
 
   login() {
-    localStorage.setItem('returnUrl', this.route.snapshot.queryParamMap.get('returnUrl'));
     this.afAuth.auth.signInWithRedirect(new auth.GoogleAuthProvider());
   }
   logout() {

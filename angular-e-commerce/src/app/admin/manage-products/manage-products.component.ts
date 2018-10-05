@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { ProductService } from './../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./manage-products.component.css']
 })
 export class ManageProductsComponent implements OnInit {
+  products: Observable<any>;
 
-  constructor() { }
+  constructor(private prodService: ProductService) {
+    this.products = prodService.getAll();
+   }
 
   ngOnInit() {
   }
